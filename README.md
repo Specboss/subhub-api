@@ -1,21 +1,27 @@
 # 🖼️ SubHub api
 
-Сервис для загрузки стоматологических 3D-данных, хранения в MinIO, вызова скрипта построения тепловых карт (ТКО), и получения статуса обработки.
-
 ## 📦 Стек
 
 - Python 3.12
 - Django + Django REST Framework
-- Docker + Docker Compose
+- Docker
 - MinIO (s3 совместимое хранилище)
 - Gunicorn
+- Redis + Celery
+- Gunicorn
+
+---
+
+## 📦 Метрики
+
+- Prometheus + Grafana (для мониторинга)
 
 ---
 
 ## 🚀 Быстрый старт (Docker)
 
 ```bash
-git clone https://gitlab.ronix.ru/picasso-storage-service.git
-cd picasso-storage-service
+git clone https://github.com/Specboss/subhub-api.git
+cd subhub-api
 cp .env.example .env
-sudo docker compose up -d --build
+sudo docker compose -f local-compose.yml up -d --build
