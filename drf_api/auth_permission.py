@@ -14,8 +14,8 @@ class RolePermission(BasePermission):
             user.role in self.required_roles
         )
 
-class AuthorRole(RolePermission):
+class Author(RolePermission):
     required_roles = ['author']
 
-class UserRole(RolePermission):
+class User(RolePermission):
     required_roles = ['user']

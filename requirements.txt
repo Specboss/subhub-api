@@ -10,6 +10,7 @@ requests
 django-storages
 Pillow
 django-cors-headers
+django-filter
 
 # Celery redis
 boto3
