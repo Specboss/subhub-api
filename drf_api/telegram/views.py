@@ -1,11 +1,11 @@
 import json
-import os
-
-import requests
-from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from rest_framework.generics import GenericAPIView
+
 from .tasks import telegram_webhook_task
+from .auth_telegram import TelegramAuth
+
 @csrf_exempt
 def telegram_webhook(request):
     if request.method != "POST":
@@ -21,4 +21,9 @@ def telegram_webhook(request):
     text = message.get("text", "")
     telegram_webhook_task.delay(chat_id, text)
     return JsonResponse({"ok": True})
+
+class TelegramAuthApiView(GenericAPIView):
+
+    def post(self, request, *args, **kwargs):
+
 
