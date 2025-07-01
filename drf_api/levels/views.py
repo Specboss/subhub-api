@@ -3,7 +3,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 
 from . import serializers
 from app.levels.models import Level, LevelUser
@@ -33,12 +33,14 @@ class ListLevelsAPIView(ListAPIView):
         author_id = self.kwargs.get('author_id')
         return Level.objects.filter(author_id=author_id)
 
-class AuthorSubscribersAPIView(ListAPIView):
+class AuthorSubscribersViewSet(mixins.ListModelMixin,
+                             mixins.DestroyModelMixin,
+                             viewsets.GenericViewSet):
     """
-    Подписки автора
+    Просмотр и удаление подписчиков автора
     """
+    permission_classes = [auth_permission.Author, IsAuthenticated]
     pagination_class = InfinitePagination
-    permission_classes = [auth_permission.Author]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 
     def get_queryset(self):
@@ -53,5 +55,32 @@ class AuthorSubscribersAPIView(ListAPIView):
                 price=F('level__price'),
             )
         )
-class UserSubscribtion:
-    pass
+
+class UserSubscriptionsApiView(viewsets.ModelViewSet):
+    """
+    Пользователь:
+    - подписываться
+    - отменять подписку
+    - просматривать свои подписки
+    """
+    serializer_class = serializers.LevelSerializer
+    permission_classes = [IsAuthenticated, auth_permission.User]
+    pagination_class = InfinitePagination
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+
+    def get_queryset(self):
+        return (
+            LevelUser.objects
+            .filter(user=self.request.user)
+            .select_related('level', 'level__author')
+            .annotate(
+                level_title=F('level__title'),
+                author_username=F('level__author__username'),
+                author_email=F('level__author__email'),
+                price=F('level__price'),
+            )
+        )
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
