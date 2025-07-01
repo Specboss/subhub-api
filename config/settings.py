@@ -38,12 +38,13 @@ DEBUG = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1', 'api-suplo.ronix.ru', 'api-subhub.ronix.ru']
+ALLOWED_HOSTS = ['localhost','127.0.0.1', 'api-suplo.ronix.ru', 'api-subhub.ronix.ru', 'subhub-api.ronix.ru']
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
     'http://localhost:3000',
     'https://api-suplo.ronix.ru',
+    'https://subhub-api.ronix.ru'
 ]
 
 AUTH_USER_MODEL = 'users.User'
