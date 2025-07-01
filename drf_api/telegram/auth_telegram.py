@@ -18,7 +18,6 @@ def verify_telegram_init_data(init_data: str, bot_token: str) -> dict:
     calculated_hash = hmac.new(secret_key, data_check_string.encode(), hashlib.sha256).hexdigest()
     # if calculated_hash != hash_:
     #     raise ValueError("Invalid initData hash")
-
     return data
 
 class TelegramAuth:
