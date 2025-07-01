@@ -8,7 +8,6 @@
 - MinIO (s3 совместимое хранилище)
 - Gunicorn
 - Redis + Celery
-- Gunicorn
 
 ---
 
@@ -23,5 +22,5 @@
 ```bash
 git clone https://github.com/Specboss/subhub-api.git
 cd subhub-api
-cp .env.example .env
+cp .env_example .env
 sudo docker compose -f local-compose.yml up -d --build

@@ -31,10 +31,12 @@ class ListLevelsAPIView(ListAPIView):
         return Level.objects.filter(author_id=author_id)
 
 class AuthorSubscribersAPIView(ListAPIView):
+    """
+    Подписки автора
+    """
     pagination_class = InfinitePagination
     permission_classes = [auth_permission.Author]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-
 
     def get_queryset(self):
         return (

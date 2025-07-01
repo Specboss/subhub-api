@@ -17,6 +17,5 @@ class Attachment(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return f'Вложения для поста номер {self.post.id}'
