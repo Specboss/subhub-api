@@ -4,8 +4,6 @@ from django.db import models
 
 from app.users.models import User
 
-
-
 class Donation(models.Model):
     """
     Донаты
