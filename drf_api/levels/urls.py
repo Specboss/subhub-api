@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('author/<int:author_id>/levels/', views.ListLevelsAPIView.as_view(), name='levels-author-list'),
-    path('subscribtions/', LevelUserApiView.as_view(), name=''),
+    #path('subscribtions/', LevelUserApiView.as_view(), name=''),
 
 ]
 router = DefaultRouter()
