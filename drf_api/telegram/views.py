@@ -29,7 +29,10 @@ class TelegramAuthApiView(GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = TelegramAuthSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        auth = TelegramAuth(init_data=serializer.validated_data["initData"])
+        auth = TelegramAuth(
+            init_data=serializer.validated_data["initData"],
+            role=serializer.validated_data.get("role", "user")
+        )
         auth.execute()
         token = auth.get_token()
         return Response({

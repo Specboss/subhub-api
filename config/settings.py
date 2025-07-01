@@ -109,12 +109,12 @@ STORAGES = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=2),  # Жизнь токена доступа
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # Жизнь refresh-токена
-    "ROTATE_REFRESH_TOKENS": True,  # Обновление refresh-токена при запросе нового access
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=2),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "ALGORITHM": "HS256",
-    "SIGNING_KEY": "your-secret-key",  # Секретный ключ, лучше брать из env-файла
+    "SIGNING_KEY": "",
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 

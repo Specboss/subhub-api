@@ -6,7 +6,7 @@ class User(AbstractUser):
     Пользователь
     """
     ROLE_CHOICES = [
-        ('author', 'Администратор'),
+        ('author', 'Автор'),
         ('user', 'Пользователь'),
     ]
 

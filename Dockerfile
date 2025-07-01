@@ -17,7 +17,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Сделать entrypoint.sh и start исполняемыми и исправить CRLF если нужно
 RUN sed -i 's/\r$//g' entrypoint.sh start.sh && chmod +x entrypoint.sh start.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
