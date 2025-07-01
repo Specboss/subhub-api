@@ -1,23 +1,23 @@
-# 🖼️ SubHub api
+# SubHub api
 
-## 📦 Стек
+## Стек
 
 - Python 3.12
 - Django + Django REST Framework
 - Docker
-- MinIO (s3 совместимое хранилище)
+- MinIO
 - Gunicorn
 - Redis + Celery
 
 ---
 
-## 📦 Метрики
+## Метрики
 
 - Prometheus + Grafana
 
 ---
 
-## 🚀 Быстрый старт (Docker)
+## Деплой (Docker)
 
 ```bash
 git clone https://github.com/Specboss/subhub-api.git
