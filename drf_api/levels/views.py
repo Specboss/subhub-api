@@ -19,6 +19,9 @@ class LevelsViewSet(viewsets.ModelViewSet):
     ordering_fields = ['price']
     ordering = ['price']
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
 class ListLevelsAPIView(ListAPIView):
     serializer_class = serializers.LevelSerializer
     permission_classes = [IsAuthenticated, auth_permission.User]
@@ -50,3 +53,5 @@ class AuthorSubscribersAPIView(ListAPIView):
                 price=F('level__price'),
             )
         )
+class UserSubscribtion:
+    pass
