@@ -14,7 +14,7 @@
 
 ## 📦 Метрики
 
-- Prometheus + Grafana (для мониторинга)
+- Prometheus + Grafana
 
 ---
 
