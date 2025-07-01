@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 urlpatterns = [
-    path('<int:author_id>/levels/', views.ListLevelsAPIView.as_view(), name='levels-author-list'),
+    path('/author/<int:author_id>/levels/', views.ListLevelsAPIView.as_view(), name='levels-author-list'),
     path('subscribtions/', LevelUserApiView.as_view(), name='level-user-api'),
     path('subscribers/', views.AuthorSubscribersAPIView.as_view(), name='level-user-api'),
 ]
