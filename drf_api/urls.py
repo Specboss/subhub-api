@@ -11,5 +11,6 @@ urlpatterns = [
     path('users/', include('drf_api.users.urls')),
     path('telegram/', include('drf_api.telegram.urls')),
     path('', include('drf_api.levels.urls')),
+    path('', include('drf_api.posts.urls'))
 ]
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
