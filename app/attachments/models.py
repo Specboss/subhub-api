@@ -7,7 +7,7 @@ def upload_to_attachments(instance, filename):
     return f"posts/{instance.id}/{filename}"
 
 class Attachment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=False, db_index=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='attachments', null=False, db_index=True)
     file = models.FileField(
         upload_to=upload_to_attachments,
         null=True,

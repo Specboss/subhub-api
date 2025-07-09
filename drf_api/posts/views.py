@@ -9,7 +9,7 @@ from app.post_feedbacks import models
 from app.posts.models import Post
 
 class PostsViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().select_related('level').prefetch_related('comments', 'postlike_set')
+    queryset = Post.objects.all().select_related('level').prefetch_related('comments', 'postlike_set', 'attachments')
     serializer_class = serializers.PostSerializer
     permission_classes = [IsAuthenticated]
 
