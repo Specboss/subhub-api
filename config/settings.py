@@ -38,7 +38,7 @@ DEBUG = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1', 'api-suplo.ronix.ru', 'api-subhub.ronix.ru', 'subhub-api.ronix.ru']
+ALLOWED_HOSTS = ['localhost','127.0.0.1', 'subhub-api.ronix.ru']
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5000',
     'http://127.0.0.1:5000',
@@ -101,8 +101,8 @@ STORAGES = {
         "OPTIONS": {
             "bucket_name": os.getenv('MINIO_BUCKET'),
             "endpoint_url": os.getenv('MINIO_ENDPOINT_URL'),
-            "access_key": os.getenv('MINIO_ACCESS_KEY'), # default Minio credentials
-            "secret_key": os.getenv('MINIO_SECRET_KEY'), # see docker-compose.yaml
+            "access_key": os.getenv('MINIO_ACCESS_KEY'),
+            "secret_key": os.getenv('MINIO_SECRET_KEY'),
             "default_acl": os.getenv('MINIO_DEFAULT_ACL'),
             "signature_version": "s3v4",
         },
@@ -196,11 +196,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),  # Имя базы данных
-        'USER': os.getenv('DB_USER'),      # Имя пользователя
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # Пароль пользователя
-        'HOST': os.getenv('DB_HOST'),  # Имя сервиса контейнера базы данных в docker-compose.yml
-        'PORT': os.getenv('DB_PORT'),  # Порт PostgreSQL
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
