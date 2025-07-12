@@ -23,17 +23,12 @@ env = environ.Env(
     # устанавливаем значения по умолчанию
     DEBUG=(bool, True)
 )
-
-# Читаем файл .env, путь можно указать явно если не в корне
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9mdj=xx2*(ldti7y5!!h1+tdwesws%&7baxd=54os%an^#&t14'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', True)
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -49,11 +44,12 @@ CSRF_TRUSTED_ORIGINS = [
 
 AUTH_USER_MODEL = 'users.User'
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', False)
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', True)
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', False)
 SECURE_HSTS_SECONDS = 31536000  # 1 год
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS', True)
+SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD', True)
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -72,7 +68,7 @@ THIRD_PARTY_APPS = [
     'storages',
 ]
 
-LOCAL_APPS=[
+LOCAL_APPS = [
     'drf_api',
     'app.users',
     'app.levels',
@@ -238,7 +234,6 @@ SECURE_BROWSER_XSS_FILTER = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #CELERY
-
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
