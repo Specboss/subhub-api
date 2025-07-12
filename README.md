@@ -1,26 +1,42 @@
-# SubHub api
+# SubHub API
 
-## Стек
+## 📦 Стек технологий
 
-- Python 3.12
-- Django + Django REST Framework
-- Docker
-- MinIO
-- Gunicorn
-- Redis + Celery
-
----
-
-## Метрики
-
-- Prometheus + Grafana
+- **Язык:** Python 3.12  
+- **Фреймворк:** Django + Django REST Framework  
+- **Очереди:** Redis + Celery  
+- **Хранилище файлов:** MinIO  
+- **Контейнеризация:** Docker + Docker Compose  
+- **WSGI сервер:** Gunicorn
+- **Метрики и мониторинг:** Prometheus + Grafana  
 
 ---
 
-## Деплой (Docker)
+## 📁 Структура конфигурации
+
+- `.env` — переменные окружения для **продакшн-сборки**
+- `.env.local` — переменные окружения для **локальной разработки**
+- `prod.yml` — продовый Compose-файл
+- `local.yml` — расширение для локального запуска
+
+---
+
+## 🚀 Деплой
+
+### 🔧 Локальный запуск
+
+```bash
+git clone https://github.com/Specboss/subhub-api.git
+cd subhub-api
+cp .env_example .env.local
+sudo docker compose -f local.yml up -d --build
+```
+
+### 🔧 Продакшн запуск
 
 ```bash
 git clone https://github.com/Specboss/subhub-api.git
 cd subhub-api
 cp .env_example .env
-sudo docker compose -f local-compose.yml up -d --build
+sudo docker compose -f prod.yml up -d --build
+```
