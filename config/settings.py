@@ -20,14 +20,18 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
-    # устанавливаем значения по умолчанию
-    DEBUG=(bool, True)
+    DEBUG=(bool, True),
+    SECURE_SSL_REDIRECT=(bool, False),
+    SESSION_COOKIE_SECURE=(bool, True),
+    CSRF_COOKIE_SECURE=(bool, False),
+    SECURE_HSTS_INCLUDE_SUBDOMAINS=(bool, True),
+    SECURE_HSTS_PRELOAD=(bool, True),
 )
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = env('DEBUG')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 MEDIA_URL = '/media/'
@@ -44,12 +48,12 @@ CSRF_TRUSTED_ORIGINS = [
 
 AUTH_USER_MODEL = 'users.User'
 
-SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', False)
-SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', True)
-CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', False)
+SECURE_SSL_REDIRECT = env('SECURE_SSL_REDIRECT')
+SESSION_COOKIE_SECURE = env('SESSION_COOKIE_SECURE')
+CSRF_COOKIE_SECURE = env('CSRF_COOKIE_SECURE')
 SECURE_HSTS_SECONDS = 31536000  # 1 год
-SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS', True)
-SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD', True)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env('SECURE_HSTS_INCLUDE_SUBDOMAINS')
+SECURE_HSTS_PRELOAD = env('SECURE_HSTS_PRELOAD')
 
 DJANGO_APPS = [
     'django.contrib.admin',
